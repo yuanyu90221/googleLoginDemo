@@ -55,7 +55,7 @@ function normalizePort(val) {
   return false;
 }
 // const RedirectionUrl = "http://localhost:1234/oauthCallback";
-const RedirectionUrl = (isHeroku==false)?"http://"+getIpv4()+":"+port+"/oauthCallback":herokuHost;
+const RedirectionUrl = (isHeroku==false)?"http://"+getIpv4()+":"+port+"/oauthCallback":herokuHost+"/oauthCallback";
 //server.listen(port);
 server.on('listening', function () {
     console.log(RedirectionUrl);
