@@ -140,6 +140,3 @@ app.get("/details", function (req, res) {
     // });
 });
 
-
-https://glacial-fortress-49233.herokuapp.com
-:3000
