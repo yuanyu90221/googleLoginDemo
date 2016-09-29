@@ -7,8 +7,7 @@ var plus = google.plus('v1');
 var os = require('os')
 const ClientId = "74791052648-d13tt66205dnrb29fq1p3s26cls4925l.apps.googleusercontent.com";
 const ClientSecret = "n8Ey5e8OqDIztmKfsEBnA8Rp";
-// const RedirectionUrl = "http://localhost:1234/oauthCallback";
-const RedirectionUrl = "https://glacial-fortress-49233.herokuapp.com/oauthCallback";
+
 //starting the express app
 var app = express();
 
@@ -27,6 +26,55 @@ app.get("/", function (req, res) {
         '<h1>Authentication using google oAuth</h1>'+'<a href="'+url+'">Login</a>');
 });
 
+// var port = 1234;
+var server = http.createServer(app);
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+//app.set('port', (process.env.PORT || 5000));
+server.listen(port);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+// const RedirectionUrl = "http://localhost:1234/oauthCallback";
+const RedirectionUrl = "https://"+getIpv4()+":"+port+"/oauthCallback";
+//server.listen(port);
+server.on('listening', function () {
+    console.log(RedirectionUrl);
+    console.log(`listening to ${port}`);
+});
+function getIpv4(){
+    var interfaces = os.networkInterfaces();
+    var addresses = [];
+    for (var k in interfaces) {
+        for (var k2 in interfaces[k]) {
+            var address = interfaces[k][k2];
+            if (address.family === 'IPv4' && !address.internal) {
+                addresses.push(address.address);
+            }
+        }
+    }
+
+    console.log(addresses);
+    return addresses[0];
+}
 
 function getOAuthClient () {
     return new OAuth2(ClientId ,  ClientSecret, RedirectionUrl);
@@ -92,50 +140,6 @@ app.get("/details", function (req, res) {
     // });
 });
 
-// var port = 1234;
-var server = http.createServer(app);
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
 
-//app.set('port', (process.env.PORT || 5000));
-server.listen(port);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-//server.listen(port);
-server.on('listening', function () {
-    console.log(RedirectionUrl);
-    console.log(`listening to ${port}`);
-});
-function getIpv4(){
-    var interfaces = os.networkInterfaces();
-    var addresses = [];
-    for (var k in interfaces) {
-        for (var k2 in interfaces[k]) {
-            var address = interfaces[k][k2];
-            if (address.family === 'IPv4' && !address.internal) {
-                addresses.push(address.address);
-            }
-        }
-    }
-
-    console.log(addresses);
-    return addresses[0];
-}
+https://glacial-fortress-49233.herokuapp.com
+:3000
