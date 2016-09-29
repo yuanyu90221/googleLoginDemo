@@ -1,0 +1,21 @@
+{
+  "name": "gooeleauthdemo",
+  "version": "1.0.0",
+  "description": "google auth",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "google",
+    "o2"
+  ],
+  "author": "yuanyu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "googleapis": "^13.0.0"
+  }
+}
