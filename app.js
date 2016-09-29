@@ -7,7 +7,7 @@ var plus = google.plus('v1');
 var os = require('os')
 const ClientId = "74791052648-d13tt66205dnrb29fq1p3s26cls4925l.apps.googleusercontent.com";
 const ClientSecret = "n8Ey5e8OqDIztmKfsEBnA8Rp";
-
+var isHeroku = false;
 //starting the express app
 var app = express();
 
@@ -54,7 +54,7 @@ function normalizePort(val) {
   return false;
 }
 // const RedirectionUrl = "http://localhost:1234/oauthCallback";
-const RedirectionUrl = "https://"+getIpv4()+":"+port+"/oauthCallback";
+const RedirectionUrl = "http://"+getIpv4()+":"+port+"/oauthCallback";
 //server.listen(port);
 server.on('listening', function () {
     console.log(RedirectionUrl);
@@ -73,6 +73,8 @@ function getIpv4(){
     }
 
     console.log(addresses);
+    if(addresses[0].includes('192.168'));
+    addresses[0] = 'localhost';
     return addresses[0];
 }
 
