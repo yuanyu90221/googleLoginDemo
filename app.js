@@ -8,7 +8,7 @@ var os = require('os')
 const ClientId = "74791052648-d13tt66205dnrb29fq1p3s26cls4925l.apps.googleusercontent.com";
 const ClientSecret = "n8Ey5e8OqDIztmKfsEBnA8Rp";
 // const RedirectionUrl = "http://localhost:1234/oauthCallback";
-const RedirectionUrl = "http://"+getIpv4()+":3000/oauthCallback";
+const RedirectionUrl = "https://glacial-fortress-49233.herokuapp.com/oauthCallback";
 //starting the express app
 var app = express();
 
