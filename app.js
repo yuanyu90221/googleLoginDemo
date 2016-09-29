@@ -125,21 +125,18 @@ app.get("/details", function (req, res) {
     var oauth2Client = getOAuthClient();
     oauth2Client.setCredentials(req.session["tokens"]);
 
-    // var p = new Promise(function (resolve, reject) {
-        // console.log(resolve);
+
         plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
-           // console.log(err);
+
             console.log(response);
-           // resolve(response || err);
+
             if(response.displayName){
                 res.send('<img src="'+response.image.url+'"/>'+'<h3>Hello "'+response.displayName+'"</h3>');
-                //break;
             }
             else{
                  res.send('get data failed');
             }
 
         });
-    // });
 });
 
