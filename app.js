@@ -131,7 +131,7 @@ app.get("/details", function (req, res) {
             console.log(response);
 
             if(response.displayName){
-                res.send('<img src="'+response.image.url+'"/>'+'<h3>Hello "'+response.displayName+'"</h3>');
+                res.send('<img src="'+response.image.url.replace('sz=50','sz=200')+'" style="border-radius:50%;"/>'+'<h3>Hello "'+response.displayName+'"</h3>');
             }
             else{
                  res.send('get data failed');
