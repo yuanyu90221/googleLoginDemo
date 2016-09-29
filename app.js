@@ -7,7 +7,8 @@ var plus = google.plus('v1');
 var os = require('os')
 const ClientId = "74791052648-d13tt66205dnrb29fq1p3s26cls4925l.apps.googleusercontent.com";
 const ClientSecret = "n8Ey5e8OqDIztmKfsEBnA8Rp";
-var isHeroku = false;
+var isHeroku = true;
+var herokuHost = "https://glacial-fortress-49233.herokuapp.com";
 //starting the express app
 var app = express();
 
@@ -54,7 +55,7 @@ function normalizePort(val) {
   return false;
 }
 // const RedirectionUrl = "http://localhost:1234/oauthCallback";
-const RedirectionUrl = "http://"+getIpv4()+":"+port+"/oauthCallback";
+const RedirectionUrl = (isHeroku==false)?"http://"+getIpv4()+":"+port+"/oauthCallback":herokuHost;
 //server.listen(port);
 server.on('listening', function () {
     console.log(RedirectionUrl);
